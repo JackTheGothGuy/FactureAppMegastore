@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Générateur de factures, devis et bons de commande — {{COMPANY_NAME}}</title>
+  <meta name="description" content="Créez une facture, un devis ou un bon de commande en quelques secondes : TVA 19%, timbre fiscal et montant en lettres calculés automatiquement. Export Word (.docx) ou PDF.">
+  <link rel="canonical" href="{{SITE_URL}}/">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{COMPANY_NAME}}">
+  <meta property="og:title" content="Générateur de factures, devis et bons de commande — {{COMPANY_NAME}}">
+  <meta property="og:description" content="Créez une facture, un devis ou un bon de commande en quelques secondes, avec export Word ou PDF prêt à imprimer.">
+  <meta property="og:url" content="{{SITE_URL}}/">
+  <meta property="og:image" content="{{SITE_URL}}/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Aperçu d'une facture Méga store générée par l'outil, avec le calcul du total HT, de la TVA et du timbre fiscal.">
+  <meta property="og:locale" content="fr_TN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Générateur de factures, devis et bons de commande">
+  <meta name="twitter:description" content="TVA, timbre fiscal et montant en lettres calculés automatiquement. Export Word ou PDF.">
+  <meta name="twitter:image" content="{{SITE_URL}}/og-image.png">
+
+  <meta name="theme-color" content="#eef1f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15181a" media="(prefers-color-scheme: dark)">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="stylesheet" href="/css/style.css">
+  <!--JSONLD-->
+</head>
+<body data-company-city="{{COMPANY_CITY}}">
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="/">
+        <img class="brand-mark" src="/favicon.svg" alt="" width="34" height="34">
+        <span class="brand-text">
+          <span class="brand-name">{{COMPANY_NAME}}</span>
+          <span class="brand-sub">Documents commerciaux</span>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="/" aria-current="page">Accueil</a>
+        <a href="/a-propos">À propos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="intro reveal">
+      <h1>Une facture, un devis ou un bon de commande, prêt en quelques secondes</h1>
+      <p>Remplissez le formulaire : le total HT, la TVA à 19&nbsp;%, le timbre fiscal et le montant en lettres se calculent automatiquement, dans la mise en page habituelle de {{COMPANY_NAME}}.</p>
+    </div>
+
+    <form class="workspace" id="doc-form" novalidate>
+      <div class="panel form-panel reveal">
+        <div class="panel-head">
+          <h2 class="panel-title">1. Renseignez le document</h2>
+          <button type="button" class="btn-reset" id="reset-form">Tout effacer</button>
+        </div>
+
+        <fieldset class="doctype-select" role="radiogroup" aria-label="Type de document">
+          <legend class="visually-hidden">Type de document</legend>
+          <div class="doctype-option">
+            <input type="radio" name="docType" id="type-facture" value="facture" checked>
+            <label for="type-facture">Facture</label>
+          </div>
+          <div class="doctype-option">
+            <input type="radio" name="docType" id="type-devis" value="devis">
+            <label for="type-devis">Devis</label>
+          </div>
+          <div class="doctype-option">
+            <input type="radio" name="docType" id="type-bon" value="bon_de_commande">
+            <label for="type-bon">Bon de commande</label>
+          </div>
+        </fieldset>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="docNumber">Numéro <span class="hint">(auto, modifiable)</span></label>
+            <input type="text" id="docNumber" name="docNumber" maxlength="30" autocomplete="off" placeholder="Ex. 09/26">
+          </div>
+          <div class="field">
+            <label for="docDate">Date <span class="hint">(modifiable)</span></label>
+            <input type="date" id="docDate" name="docDate">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="client">Nom du client</label>
+          <input type="text" id="client" name="client" required maxlength="200" autocomplete="off" placeholder="Ex. MR ISSAM HARBAOUI LE KRAM">
+        </div>
+
+        <h3 class="items-heading">Postes du document</h3>
+        <div class="items-list" id="items-list">
+          <div class="item-card" data-item>
+            <div class="item-card-header">
+              <span class="item-number">Poste 1</span>
+              <button type="button" class="remove-item" aria-label="Supprimer ce poste" disabled>Supprimer</button>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Quantité <span class="hint">(facultatif)</span></label>
+                <input type="number" class="item-quantity" min="0" step="1" inputmode="numeric" placeholder="0">
+              </div>
+              <div class="field field-money">
+                <label>PU HT <span class="hint">(prix unitaire, en DT)</span></label>
+                <input type="number" class="item-puht" min="0" step="0.001" inputmode="decimal" required placeholder="0.000">
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Désignation</label>
+              <textarea class="item-designation" required maxlength="3000" placeholder="Ex. Fourniture et pose de 03 portes et 09 fenêtres en aluminium couleur noir et vitre stop sol&#10;Soit 20 M2"></textarea>
+            </div>
+
+            <div class="field field-money">
+              <label class="pt-ht-note">
+                <span>PT HT <span class="hint">(prix total)</span></span>
+                <button type="button" class="item-recalc">Recalculer (Qté × PU HT)</button>
+              </label>
+              <input type="number" class="item-ptht" min="0" step="0.001" inputmode="decimal" required placeholder="0.000">
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-add-item" id="add-item">+ Ajouter un poste</button>
+
+        <template id="item-template">
+          <div class="item-card" data-item>
+            <div class="item-card-header">
+              <span class="item-number">Poste</span>
+              <button type="button" class="remove-item" aria-label="Supprimer ce poste">Supprimer</button>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Quantité <span class="hint">(facultatif)</span></label>
+                <input type="number" class="item-quantity" min="0" step="1" inputmode="numeric" placeholder="0">
+              </div>
+              <div class="field field-money">
+                <label>PU HT <span class="hint">(prix unitaire, en DT)</span></label>
+                <input type="number" class="item-puht" min="0" step="0.001" inputmode="decimal" required placeholder="0.000">
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Désignation</label>
+              <textarea class="item-designation" required maxlength="3000" placeholder="Ex. Fenêtre aluminium 1x1m"></textarea>
+            </div>
+
+            <div class="field field-money">
+              <label class="pt-ht-note">
+                <span>PT HT <span class="hint">(prix total)</span></span>
+                <button type="button" class="item-recalc">Recalculer (Qté × PU HT)</button>
+              </label>
+              <input type="number" class="item-ptht" min="0" step="0.001" inputmode="decimal" required placeholder="0.000">
+            </div>
+          </div>
+        </template>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary" data-format="docx" id="submit-docx">Télécharger en Word</button>
+          <button type="submit" class="btn" data-format="pdf" id="submit-pdf">Télécharger en PDF</button>
+        </div>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="preview-wrap">
+        <div class="preview-label">
+          <span><span class="dot" aria-hidden="true"></span>Aperçu en direct</span>
+          <span id="preview-doctype">Facture</span>
+        </div>
+        <div class="doc-sheet reveal" id="doc-preview" aria-live="polite">
+          <p class="doc-company">{{COMPANY_NAME}}</p>
+          <p class="doc-company" style="font-weight:400">{{COMPANY_TAGLINE}}</p>
+          <p class="doc-company" style="font-weight:400">{{COMPANY_PHONE}}</p>
+          <p class="doc-company" style="font-weight:400">{{COMPANY_TAXID}}</p>
+          <p class="doc-date" id="preview-date">{{COMPANY_CITY}} le --/--/----</p>
+          <p class="doc-title" id="preview-title">Facture N° --/--</p>
+          <p class="doc-client">Client : <span id="preview-client" class="doc-empty-placeholder">—</span></p>
+
+          <table class="doc-table">
+            <thead>
+              <tr><th class="col-qte">Qte</th><th class="col-desc">désignation</th><th class="col-pu">PU HT</th><th class="col-pt">PT HT</th></tr>
+            </thead>
+            <tbody id="preview-items-body">
+              <tr>
+                <td class="col-qte"></td>
+                <td class="col-desc"><span class="doc-empty-placeholder">—</span></td>
+                <td class="col-pu"></td>
+                <td class="col-pt"></td>
+              </tr>
+            </tbody>
+            <tbody id="preview-summary-body">
+              <tr><td></td><td></td><td class="col-pu">TOT HT</td><td class="col-pt" id="preview-totht">0.000</td></tr>
+              <tr><td></td><td></td><td class="col-pu">TVA 19%</td><td class="col-pt" id="preview-tva">0.000</td></tr>
+              <tr><td></td><td></td><td class="col-pu">TIMBRE</td><td class="col-pt" id="preview-timbre">1.000</td></tr>
+              <tr class="doc-ttc-row"><td></td><td></td><td class="col-pu">TOT TTC</td><td class="col-pt" id="preview-totttc">1.000</td></tr>
+            </tbody>
+          </table>
+
+          <p class="doc-closing" id="preview-closing">Arrêté la présente facture à la somme de :</p>
+          <p class="doc-words" id="preview-words">Un dinar.</p>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-row">
+      <span>© <span id="year">2026</span> {{COMPANY_NAME}} — {{COMPANY_TAXID}}</span>
+      <a href="/a-propos">À propos de cet outil</a>
+    </div>
+  </footer>
+
+  <script src="/js/app.js" defer></script>
+</body>
+</html>

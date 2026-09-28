@@ -1,0 +1,5 @@
+Ce dossier stocke l'état applicatif (compteurs.json — numérotation
+automatique des factures/devis/bons de commande). Il est créé
+automatiquement au premier document généré. En production, montez ce
+dossier sur un volume persistant si vous déployez sur une plateforme
+au système de fichiers éphémère (voir README.md).

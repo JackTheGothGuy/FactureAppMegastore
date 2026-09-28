@@ -1,0 +1,11 @@
+node_modules/
+.env
+*.log
+npm-debug.log*
+
+# État applicatif (compteur de numérotation des documents) — à sauvegarder
+# séparément en production (volume monté), pas à versionner.
+data/*.json
+
+.DS_Store
+Thumbs.db

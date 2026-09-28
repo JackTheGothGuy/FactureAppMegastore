@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>À propos du générateur de documents — {{COMPANY_NAME}}</title>
+  <meta name="description" content="Comment fonctionne le générateur de factures, devis et bons de commande de {{COMPANY_NAME}} : calcul de la TVA, du timbre fiscal, du montant en lettres, et export Word ou PDF.">
+  <link rel="canonical" href="{{SITE_URL}}/a-propos">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{COMPANY_NAME}}">
+  <meta property="og:title" content="À propos du générateur de documents — {{COMPANY_NAME}}">
+  <meta property="og:description" content="Comment fonctionne le générateur : calcul de la TVA, du timbre fiscal, du montant en lettres, et export Word ou PDF.">
+  <meta property="og:url" content="{{SITE_URL}}/a-propos">
+  <meta property="og:image" content="{{SITE_URL}}/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Aperçu d'une facture Méga store générée par l'outil.">
+  <meta property="og:locale" content="fr_TN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{SITE_URL}}/og-image.png">
+
+  <meta name="theme-color" content="#eef1f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15181a" media="(prefers-color-scheme: dark)">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="stylesheet" href="/css/style.css">
+  <!--JSONLD-->
+</head>
+<body data-company-city="{{COMPANY_CITY}}">
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="/">
+        <img class="brand-mark" src="/favicon.svg" alt="" width="34" height="34">
+        <span class="brand-text">
+          <span class="brand-name">{{COMPANY_NAME}}</span>
+          <span class="brand-sub">Documents commerciaux</span>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="/">Accueil</a>
+        <a href="/a-propos" aria-current="page">À propos</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+    <ol>
+      <li><a href="/">Accueil</a></li>
+      <li aria-current="page">À propos</li>
+    </ol>
+  </nav>
+
+  <main id="main" class="content-page">
+    <h1>Comment fonctionne ce générateur</h1>
+    <p>Cet outil produit des factures, devis et bons de commande <a href="/">directement depuis votre navigateur</a>, dans la mise en page utilisée par {{COMPANY_NAME}}, sans logiciel à installer.</p>
+
+    <section>
+      <h2>Ce qui est calculé automatiquement</h2>
+      <ul>
+        <li><strong>Total HT</strong> — repris du prix total hors taxes (PT HT) que vous saisissez, lui-même calculable automatiquement à partir de la quantité et du prix unitaire.</li>
+        <li><strong>TVA</strong> — 19&nbsp;% du total HT.</li>
+        <li><strong>Timbre fiscal</strong> — montant fixe de 1,000&nbsp;DT ajouté à chaque document.</li>
+        <li><strong>Total TTC</strong> — la somme du total HT, de la TVA et du timbre.</li>
+        <li><strong>Montant en lettres</strong> — le total TTC est converti en toutes lettres, en français, pour la mention légale de clôture du document.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Trois types de documents, une seule mise en page</h2>
+      <p>Une <strong>facture</strong>, un <strong>devis</strong> et un <strong>bon de commande</strong> partagent rigoureusement la même mise en page — seuls le titre et la phrase de clôture changent. Le numéro du document s'incrémente automatiquement pour chaque type, par année ; le numéro et la date sont proposés par défaut mais restent modifiables avant l'export.</p>
+    </section>
+
+    <section>
+      <h2>Formats d'export</h2>
+      <p>Chaque document peut être téléchargé au format <strong>Word (.docx)</strong>, modifiable, ou <strong>PDF</strong>, prêt à imprimer ou à envoyer par e-mail. Les deux formats utilisent la même mise en page et les mêmes polices.</p>
+      <div class="callout">
+        <p style="margin:0">Besoin de générer un document&nbsp;? <a href="/">Retournez à l'accueil</a> pour commencer.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Confidentialité</h2>
+      <p>Les informations saisies (client, désignation, montants) ne servent qu'à produire le fichier téléchargé : elles ne sont ni publiées, ni partagées avec des tiers.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-row">
+      <span>© <span id="year">2026</span> {{COMPANY_NAME}} — {{COMPANY_TAXID}}</span>
+      <a href="/">Accueil</a>
+    </div>
+  </footer>
+
+  <script src="/js/year.js" defer></script>
+</body>
+</html>

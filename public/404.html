@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Page introuvable (404) — {{COMPANY_NAME}}</title>
+  <meta name="description" content="Cette page n'existe pas ou a été déplacée. Retournez à l'accueil pour générer une facture, un devis ou un bon de commande.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--JSONLD-->
+</head>
+<body data-company-city="{{COMPANY_CITY}}">
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="/">
+        <img class="brand-mark" src="/favicon.svg" alt="" width="34" height="34">
+        <span class="brand-text">
+          <span class="brand-name">{{COMPANY_NAME}}</span>
+          <span class="brand-sub">Documents commerciaux</span>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="/">Accueil</a>
+        <a href="/a-propos">À propos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="not-found">
+      <p class="code">404</p>
+      <h1>Cette page n'existe pas</h1>
+      <p>L'adresse demandée est introuvable — elle a peut-être été déplacée ou mal orthographiée.</p>
+      <p><a class="btn btn-primary" href="/" style="text-decoration:none; display:inline-flex">Retourner à l'accueil</a></p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-row">
+      <span>© <span id="year">2026</span> {{COMPANY_NAME}}</span>
+      <a href="/a-propos">À propos</a>
+    </div>
+  </footer>
+
+  <script src="/js/year.js" defer></script>
+</body>
+</html>
