@@ -13,7 +13,7 @@ rapide.
 
 ```bash
 npm install
-cp .env.example .env      # puis modifiez SITE_URL avec votre domaine
+cp .env.megastore .env      
 npm start
 ```
 
