@@ -105,7 +105,7 @@ Chaque type de document (facture / devis / bon de commande) a son propre
 compteur, remis à zéro chaque année civile, stocké dans
 `data/counters.json` (créé automatiquement au premier document généré).
 
-⚠️ En production sur une plateforme au système de fichiers éphémère
+En production sur une plateforme au système de fichiers éphémère
 (Heroku, certains PaaS...), montez `data/` sur un volume persistant, sinon
 la numérotation repartira de zéro à chaque redéploiement.
 
@@ -115,7 +115,7 @@ la numérotation repartira de zéro à chaque redéploiement.
    (Render, Railway, un VPS avec PM2 + Nginx, etc.).
 2. Dans les variables d'environnement de production, définissez :
    ```
-   SITE_URL=https://www.votre-domaine.tn
+   SITE_URL=https://www.megastore-facture.tn
    PORT=3000
    ```
    `SITE_URL` pilote automatiquement les balises canoniques, Open Graph,
@@ -128,8 +128,8 @@ la numérotation repartira de zéro à chaque redéploiement.
    PaaS) devant l'application Node pour gérer HTTPS (Let's Encrypt/Caddy
    s'en chargent automatiquement) et rediriger le port 80/443 vers le
    `PORT` de l'application.
-5. Vérifiez `https://votre-domaine.tn/sitemap.xml` et
-   `https://votre-domaine.tn/robots.txt` une fois en ligne, puis soumettez
+5. Vérifiez `https://megastore-facture.tn/sitemap.xml` et
+   `https://megastore-facture.tn/robots.txt` une fois en ligne, puis soumettez
    le sitemap dans Google Search Console.
 
 Exemple minimal avec PM2 + Nginx sur un VPS :
@@ -142,7 +142,7 @@ pm2 start server.js --name factures
 ```nginx
 server {
   listen 80;
-  server_name www.votre-domaine.tn;
+  server_name www.megastore-facture.tn;
   location / {
     proxy_pass http://127.0.0.1:3000;
     proxy_set_header Host $host;
